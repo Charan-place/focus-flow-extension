@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FocusFlow</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="logo">
+      <span class="logo-icon">◎</span>
+      <span class="logo-text">FocusFlow</span>
+    </div>
+    <div class="header-actions">
+      <button class="icon-btn" id="statsBtn" title="Stats">◈</button>
+      <button class="icon-btn" id="settingsBtn" title="Settings">⚙</button>
+    </div>
+  </header>
+
+  <!-- ═══ MAIN VIEW ═══════════════════════════════════════════════ -->
+  <div id="mainView" class="view active">
+
+    <!-- Active Task Display -->
+    <div class="active-task-banner" id="activeTaskBanner">
+      <div class="active-task-label">LOCKED IN ON</div>
+      <div class="active-task-name" id="activeTaskName">No active task</div>
+    </div>
+
+    <!-- Timer Ring -->
+    <div class="timer-section">
+      <div class="mode-pills">
+        <button class="mode-pill active" data-mode="focus">Focus</button>
+        <button class="mode-pill" data-mode="shortBreak">Short Break</button>
+        <button class="mode-pill" data-mode="longBreak">Long Break</button>
+      </div>
+
+      <div class="timer-ring-container">
+        <svg class="timer-svg" viewBox="0 0 220 220">
+          <circle class="ring-bg" cx="110" cy="110" r="96"/>
+          <circle class="ring-progress" id="ringProgress" cx="110" cy="110" r="96"
+            stroke-dasharray="603.19" stroke-dashoffset="0"/>
+        </svg>
+        <div class="timer-face">
+          <div class="timer-time" id="timerDisplay">25:00</div>
+          <div class="timer-mode-label" id="timerModeLabel">FOCUS</div>
+        </div>
+      </div>
+
+      <!-- Pomodoro Dots -->
+      <div class="pomo-dots" id="pomoDots">
+        <div class="pomo-dot" data-i="0"></div>
+        <div class="pomo-dot" data-i="1"></div>
+        <div class="pomo-dot" data-i="2"></div>
+        <div class="pomo-dot" data-i="3"></div>
+      </div>
+
+      <!-- Timer Controls -->
+      <div class="timer-controls">
+        <button class="ctrl-btn secondary" id="resetBtn" title="Reset">↺</button>
+        <button class="ctrl-btn primary" id="startPauseBtn">
+          <span id="startPauseBtnIcon">▶</span>
+          <span id="startPauseBtnLabel">START</span>
+        </button>
+        <button class="ctrl-btn secondary" id="skipBtn" title="Skip">⏭</button>
+      </div>
+    </div>
+
+    <!-- Divider -->
+    <div class="section-divider">
+      <span>TASKS</span>
+    </div>
+
+    <!-- Add Task -->
+    <div class="add-task-row">
+      <input type="text" class="task-input" id="taskInput" placeholder="Add a task and lock in..." maxlength="80">
+      <button class="add-task-btn" id="addTaskBtn">+</button>
+    </div>
+
+    <!-- Task List -->
+    <div class="task-list" id="taskList">
+      <!-- Tasks injected by JS -->
+    </div>
+
+    <!-- Empty State -->
+    <div class="empty-state" id="emptyState">
+      <div class="empty-icon">🎯</div>
+      <div class="empty-text">Add a task to begin your focus session</div>
+    </div>
+
+  </div>
+
+  <!-- ═══ STATS VIEW ════════════════════════════════════════════════ -->
+  <div id="statsView" class="view">
+    <div class="view-header">
+      <button class="back-btn" id="statsBack">← Back</button>
+      <h2>Your Progress</h2>
+    </div>
+
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-value" id="statPomodoros">0</div>
+        <div class="stat-label">Pomodoros</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" id="statMinutes">0</div>
+        <div class="stat-label">Focus Minutes</div>
+      </div>
+      <div class="stat-card accent">
+        <div class="stat-value" id="statStreak">0</div>
+        <div class="stat-label">🔥 Day Streak</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value" id="statTasks">0</div>
+        <div class="stat-label">Tasks Done</div>
+      </div>
+    </div>
+
+    <div class="chart-section">
+      <div class="chart-title">Last 7 Days (Pomodoros)</div>
+      <div class="bar-chart" id="barChart">
+        <!-- bars injected -->
+      </div>
+    </div>
+
+    <div class="longest-streak">
+      <span>🏆 Longest Streak: </span>
+      <span id="longestStreak">0 days</span>
+    </div>
+  </div>
+
+  <!-- ═══ SETTINGS VIEW ════════════════════════════════════════════ -->
+  <div id="settingsView" class="view">
+    <div class="view-header">
+      <button class="back-btn" id="settingsBack">← Back</button>
+      <h2>Settings</h2>
+    </div>
+
+    <div class="settings-list">
+
+      <div class="settings-group">
+        <div class="settings-group-title">⏱ TIMER DURATIONS</div>
+        <div class="setting-row">
+          <label>Focus (min)</label>
+          <div class="number-input-row">
+            <button class="num-btn" data-action="dec" data-key="focusDuration">−</button>
+            <span class="num-val" id="focusDuration">25</span>
+            <button class="num-btn" data-action="inc" data-key="focusDuration">+</button>
+          </div>
+        </div>
+        <div class="setting-row">
+          <label>Short Break (min)</label>
+          <div class="number-input-row">
+            <button class="num-btn" data-action="dec" data-key="shortBreak">−</button>
+            <span class="num-val" id="shortBreak">5</span>
+            <button class="num-btn" data-action="inc" data-key="shortBreak">+</button>
+          </div>
+        </div>
+        <div class="setting-row">
+          <label>Long Break (min)</label>
+          <div class="number-input-row">
+            <button class="num-btn" data-action="dec" data-key="longBreak">−</button>
+            <span class="num-val" id="longBreak">15</span>
+            <button class="num-btn" data-action="inc" data-key="longBreak">+</button>
+          </div>
+        </div>
+        <div class="setting-row">
+          <label>Long Break After</label>
+          <div class="number-input-row">
+            <button class="num-btn" data-action="dec" data-key="longBreakAfter">−</button>
+            <span class="num-val" id="longBreakAfter">4</span>
+            <button class="num-btn" data-action="inc" data-key="longBreakAfter">+</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="settings-group">
+        <div class="settings-group-title">🔔 ALERTS & SOUND</div>
+        <div class="setting-row">
+          <label>Voice Alerts</label>
+          <label class="toggle">
+            <input type="checkbox" id="ttsEnabled" checked>
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+        <div class="setting-row">
+          <label>Notifications</label>
+          <label class="toggle">
+            <input type="checkbox" id="notificationsEnabled" checked>
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+        <div class="setting-row">
+          <label>Chime Sound</label>
+          <label class="toggle">
+            <input type="checkbox" id="soundEnabled" checked>
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+        <div class="setting-row">
+          <label>Chime Volume</label>
+          <input type="range" class="slider" id="soundVolume" min="0" max="1" step="0.05" value="0.7">
+        </div>
+        <div class="setting-row">
+          <label>TTS Rate</label>
+          <input type="range" class="slider" id="ttsRate" min="0.5" max="1.5" step="0.05" value="0.95">
+        </div>
+      </div>
+
+      <div class="settings-group">
+        <div class="settings-group-title">🚀 AUTOMATION</div>
+        <div class="setting-row">
+          <label>Auto-start Breaks</label>
+          <label class="toggle">
+            <input type="checkbox" id="autoStartBreaks">
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+        <div class="setting-row">
+          <label>Auto-start Focus</label>
+          <label class="toggle">
+            <input type="checkbox" id="autoStartFocus">
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+      </div>
+
+      <button class="danger-btn" id="resetStatsBtn">Reset All Stats</button>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
