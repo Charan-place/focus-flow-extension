@@ -12,7 +12,9 @@ One task. Full focus. A dopamine-driven reward loop for elite concentration.
 [![Lint](https://github.com/Charan-place/focus-flow-extension/actions/workflows/lint.yml/badge.svg)](https://github.com/Charan-place/focus-flow-extension/actions/workflows/lint.yml)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-orange.svg)](CONTRIBUTING.md)
 
-<!-- TODO: replace with a real demo GIF. Record a 25→1 min session, hit start, show the chime + confetti + voice celebration. Drop the file in docs/ and update the path below. -->
+![FocusFlow](docs/social-preview.png)
+
+<!-- TODO: add a real demo GIF below the banner. Record a 1-min session, hit start, show the chime + confetti + voice celebration. Save as docs/demo.gif and uncomment. -->
 <!-- ![FocusFlow demo](docs/demo.gif) -->
 
 </div>
