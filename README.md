@@ -1,4 +1,21 @@
+<div align="center">
+
 # ◎ FocusFlow — Deep Work Engine
+
+**A free, open-source, privacy-first Pomodoro focus timer for Chrome.**
+One task. Full focus. A dopamine-driven reward loop for elite concentration.
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Manifest V3](https://img.shields.io/badge/Manifest-V3-success.svg)](manifest.json)
+[![No Tracking](https://img.shields.io/badge/Privacy-No%20Tracking-brightgreen.svg)](PRIVACY.md)
+[![Zero Dependencies](https://img.shields.io/badge/Dependencies-0-brightgreen.svg)](#-how-its-built)
+[![Lint](https://github.com/Charan-place/focus-flow-extension/actions/workflows/lint.yml/badge.svg)](https://github.com/Charan-place/focus-flow-extension/actions/workflows/lint.yml)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-orange.svg)](CONTRIBUTING.md)
+
+<!-- TODO: replace with a real demo GIF. Record a 25→1 min session, hit start, show the chime + confetti + voice celebration. Drop the file in docs/ and update the path below. -->
+<!-- ![FocusFlow demo](docs/demo.gif) -->
+
+</div>
 
 > **One task. Full focus. A dopamine-driven Pomodoro timer for elite concentration.**
 
@@ -9,7 +26,25 @@ focus session, and when the timer ends FocusFlow celebrates you — a voice chee
 a notification fires, and confetti rains across whatever page you're on. Then it nudges
 you into a break, and back again.
 
-No accounts. No cloud. No tracking. Everything lives locally in your browser.
+**No accounts. No cloud. No tracking. No data ever leaves your device.** The entire
+codebase is plain HTML/CSS/JS with zero dependencies — read it in minutes, trust it
+forever. See [PRIVACY.md](PRIVACY.md) and [SECURITY.md](SECURITY.md).
+
+---
+
+## ⬇️ Install (2 minutes)
+
+> **Coming soon to the Chrome Web Store** for true one-click install. For now, install
+> the open-source build directly — it takes two minutes and you can read every line first.
+
+1. **Download** this repo — [grab the ZIP](https://github.com/Charan-place/focus-flow-extension/archive/refs/heads/main.zip) and unzip it, or clone:
+   ```bash
+   git clone https://github.com/Charan-place/focus-flow-extension.git
+   ```
+2. Open **`chrome://extensions`** in Chrome / Edge / Brave / Opera.
+3. Turn on **Developer mode** (top-right toggle).
+4. Click **Load unpacked** → select the `focus-flow-extension` folder.
+5. Pin the ◎ icon and start your first focus session.
 
 ---
 
