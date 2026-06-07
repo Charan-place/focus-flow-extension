@@ -10,8 +10,15 @@
   // Inject styles
   const style = document.createElement('style');
   style.id = 'focusflow-styles';
+  const fontUrl = chrome.runtime.getURL('fonts/space-grotesk-latin.woff2');
   style.textContent = `
-    @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&display=swap');
+    @font-face {
+      font-family: 'Space Grotesk';
+      font-style: normal;
+      font-weight: 400 700;
+      font-display: swap;
+      src: url('${fontUrl}') format('woff2');
+    }
 
     #focusflow-overlay {
       position: fixed;

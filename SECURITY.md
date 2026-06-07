@@ -28,8 +28,8 @@ You don't have to trust us — read the code:
 - [`offscreen.js`](offscreen.js) — plays the local chime files
 - [`popup/`](popup/) — the UI
 
-Search the repo for `fetch(`, `XMLHttpRequest`, or any external URL. You'll find only a
-Google Fonts stylesheet link for the overlay — no data is sent.
+Search the repo for `fetch(`, `XMLHttpRequest`, or any external URL (`http`). You'll find
+nothing — fonts and sounds are bundled locally. FocusFlow makes zero network requests.
 
 ## Supported versions
 

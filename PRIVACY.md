@@ -27,9 +27,10 @@ extension work — show your tasks, run your timer, draw your stats chart.
 
 ## Network activity
 
-FocusFlow makes **no network requests** for your data. The only outbound request the
-code can make is loading a Google Font for the on-page celebration overlay. If you want
-zero external requests, that font can be bundled locally — see the repo issues.
+FocusFlow makes **zero network requests**. None. All fonts, sounds, and code are bundled
+inside the extension and loaded locally. There is no analytics endpoint, no font CDN, no
+external call of any kind. You can verify this — search the codebase for `http`, `fetch`,
+or `XMLHttpRequest` and you'll find nothing.
 
 ## About the permissions
 
